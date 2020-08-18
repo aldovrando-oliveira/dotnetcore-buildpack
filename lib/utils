@@ -64,10 +64,10 @@ export_env_dir() {
 function rename_dll_files() {
   local BUILD_DIR="$1"
 
-  topic "Updating files names"
+  echo "Updating files names" | indent
   for f in $BUILD_DIR/heroku_output/wwwroot/_framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
 
 
-  topic "Updating blazor.boot.json"
+  echo "Updating blazor.boot.json" | indent
   sed -i 's/\.dll"/.bin"/g' $BUILD_DIR/heroku_output/wwwroot/_framework/blazor.boot.json
 }
